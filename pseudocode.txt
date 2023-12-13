@@ -1,0 +1,169 @@
+Semester Project: Clothing Distribution
+Pseudocode and Complexity Due Sunday, October 9th, by 11:59pm
+
+Objectives:
+
+ Develop pseudocode writing skills
+ Gain deeper understanding of pseudocode structure and meaning
+ Develop ability to determine computational complexity of algorithms by determining worst-case time and space complexity for your project implementation
+
+Requirements:
+
+ Pseudocode must be written in the same style as the textbook
+
+o Use concise descriptions of the primary steps of the algorithm
+
+o Include memory allocations (e.g. ‘Let m [1..n, 1..n] be a new table’)
+
+o Short comments may be included using ‘//’
+
+o Do not submit an outline, paragraphs of text, or code
+
+ Compute big-O time and space complexity
+o Be sure to include both time and space complexity for the entire program
+o Be sure to use big-O notation
+o If you use alternative variables (e.g. n), be sure to clearly define the variables
+
+Suggestions:
+
+ Use italics for variables and bold for keywords as done in textbook
+
+ Complexities may be broken up for subsections of the pseudocode
+
+o Use line numbers to indicate subsection
+
+o Partial credit may be assigned
+
+Submission:
+
+Upload files on Canvas before due date. Late submissions allowed for up to one day with 5% penalty.
+Rubric:
+Pseudocode correctness 45 pts.
+Pseudocode formatting follows textbook style 10 pts.
+Complexity correctness 45 pts.
+
+
+
+
+numChild = number of children and, numClothes = number of clothes, prices = cloth prices array of length numClothes,
+childSizes = child sizes array of length numChild, clothesSizes = cloth sizes array of length numClothes,
+clothSeasons = cloth seasons array of length numClothes,
+P[numChild,numClothes] = pricematrix
+// P - priceMatrix 2D array that maps children to all eligible clothes. 
+// P[i,j] - If a cloth[j] is eligible to be mapped to a child[i], then the cloth price [j] is mapped in the cell P[i,j] otherwise price value of 0 is mapped. Note that one cloth can be eligible to be mapped to more than one child.
+
+
+1 struct CandidateSolution
+2 begin
+3 	float Dvalue
+4 	int priceMatrix[1...m, 1....n]
+5 end
+
+
+INITIALIZE-2D-ARRAY-WITH-ZEROS(rowSize, colSize)
+1  matrixTwoD[1.....rowSize, 1.....colSize]
+2  for i = 0 to numChild
+3  		for j = 0 to numClothes
+4 			matrixTwoD[i][j] = 0
+5  return matrixTwoD
+
+
+
+SET-SOLUTION-OF-OUT-OF-BOUNDS()
+1  CandidateSolution oobSolution
+2  oobSolution = inf
+3  return oobSolution
+
+
+INITIALIZE-PRICE-MATRIX(numChild,numClothes)	
+1  priceMatrix[1...numChild, 1...numClothes] = INITIALIZE-2D-ARRAY-WITH-ZEROS(numChild, numClothes)
+2  for i = 0 to numChild
+3 		for j = 0 to numClothes
+4 			if childSizes[i] = clothesSizes[j]) or clothesSize[j] = 'A'
+5				priceMatrix[i][j] = prices[j]
+6  return priceMatrix //updated with eligible cloth price values mapped to children
+
+BUILD-SOLUTION-FROM-ELIGIBLE-PATH(matrixSolutionPath, numChild, numClothes, rByN, clothSeasons)
+1 for i = 0 to numChild
+2	atleastWinter = false
+3	atleastSummer = false
+4	for j = 0 to numClothes
+5		if matrixSolutionPath[i][j] > 0
+6			if clothSeasons[j] = 'w'
+7				atleastWinter = True
+8			if clothSeasons[j] == 's'
+9				atleastSummer = True
+10	if atleastWinter = or and atleastSummer = false
+11		// atleast one winter cloth or summer cloth constraint failed
+12		return SET-SOLUTION-OF-OUT-OF-BOUNDS()
+13	CandidateSolution eligibleSolution
+14	eligibleSolution.Dvalue = COMPUTE-DISTRIBUTION-SUM(matrixSolutionPath,numChild, numClothes, rByN)
+15	eligibleSolution.priceMatrix = matrixSolutionPath
+16	return eligibleSolution
+
+
+GET-MAIN-FAIR-PRICE-RECURSION-FN(P, numChild, numClothes,
+								currIx, currJx, currMatrixPath, rByN, globalMinimumSolution, clothSeasons)
+1 if (currIx < 0) or (currIx > (numChild) - 1) or  (currJx < 0)
+2	return SET-SOLUTION-OF-OUT-OF-BOUNDS()
+3 else if (currJx <= numClothes - 1) 
+4	if (currPriceMatrix[currIx][currJx] == 0) 
+5		return SET-SOLUTION-OF-OUT-OF-BOUNDS()
+6 	for i = 0 to numChild
+7		newMatrixPath = INITIALIZE-2D-ARRAY-WITH-ZEROS(numChild, numClothes)
+8		// carryforward current matrix path to next recursion step
+9		copiedNewMatrixPath = copyMatrixToMatrix(currMatrixPath,newMatrixPath,numChild,numClothes)
+10		minTopBottomSolution = MINIMUM(
+11		GET-MAIN-FAIR-PRICE-RECURSION-FN(currPriceMatrix, numChild, numClothes, currIx + idx,
+12          currJx + 1, copiedNewMatrixPath, rByNRatio, currGlobalOptimum, seasons),
+13         GET-MAIN-FAIR-PRICE-RECURSION-FN (currPriceMatrix, numChild, numClothes, currIx - idx - 1, currJx + 1, copiedNewMatrixPath, rByNRatio, currGlobalOptimum, seasons))
+14        if minTopBottomSolution.Dvalue >=0 and minTopBottomSolution.Dvalue < globalMinimumSolution.Dvalue
+15        	globalMinimumSolution.Dvalue = minTopBottomSolution.Dvalue
+16        	globalMinimumSolution.priceMatrix = minTopBottomSolution.priceMatrix
+17  else
+  	// full path explored
+18  	return BUILD-SOLUTION-FROM-ELIGIBLE-PATH(currMatrixPath, numChild, numClothes, rByN, clothSeasons)
+
+
+MINIMUM-FAIR-PRICE-DIFFERENCE-MAIN(P, numChild, numClothes, rByN, clothSeasons)
+1 	CandidateSolution globalMinimumSolution
+2  globalMinimumSolution.Dvalue = inf
+3  for childIx = 0 to numChild
+4 		baseMatrixPath[1...numChild, 1...numClothes] = INITIALIZE-2D-ARRAY-WITH-ZEROS(numChild, numClothes)
+5		solutionFromRecursion = GET-MAIN-FAIR-PRICE-RECURSION-FN(P, numChild, numClothes,
+								childIx, clothJx, baseMatrixPath, rByN, globalMinimumSolution, clothSeasons)
+6		if solutionFromRecursion.minDvalue < globalMinimumD
+7			globalMinimumSolution.priceMatrix = solutionFromRecursion.priceMatrix
+8			globalMinimumSolution.Dvalue = solutionFromRecursion.minDvalue
+	// return only after exploring all candidate solutions in for loop
+9	return globalMinimumSolution // global optimal minimum distribution
+
+MAIN()
+// Assmptions: All requires variables are initialized and other helper functions are defined
+1. assignment[1...numChild, 1....numClothes]
+1. INITIALIZE-PRICE-MATRIX(numChild,numClothes)
+2. Solution	optimalGlobalMinimumSolution = MINIMUM-FAIR-PRICE-DIFFERENCE-MAIN(P, numChild, numClothes, rByN, clothSeasons)
+3. for i = 0 to numChild
+	for j = 0 to numClothes
+		// assign a value either 0 or 1 based on final solutions's price matrix 
+		assignment[i][j] = min(1, optimalGlobalMinimumSolution.priceMatrixUpdated[i][j]))
+
+
+		
+
+
+
+
+
+2. Set globalMinimum (infinite)
+3. Explore all eligible paths with one cloth exactly mapped to one child. Start with current optima
+	// check if this path is valid by checking the constraints
+	// build Candidate Solutions
+	// check if the candidate solution is better than the current optima -> by computing D and comparing Ds
+	// if so update the current optima
+4. If Candidate Solution is less than lower bound --> global optimum
+5. Return global optima and finish the final assignment
+
+
+
+

@@ -1,0 +1,16 @@
+README for clothing distribution base code
+
+Sharlee Climer, Sept. 2022
+
+Unzip and untar package:
+
+    gunzip clothing_src.tar.gz
+    tar -xvf clothing_src.tar 
+    
+Change directories, type 'make' to compile, and 'clothing' to see command line arguments:
+    
+    cd clothing_src
+    make
+    ./clothing
+    
+Optional: reduce screen output by changing values for VERBOSE and QUIET in 'clothing.h' and recompiling

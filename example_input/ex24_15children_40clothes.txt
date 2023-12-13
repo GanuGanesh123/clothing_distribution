@@ -1,0 +1,57 @@
+Clothes
+A1	XL	summer	18
+A2	ALL	summer	36
+A3	ALL	winter	21
+A4	S	winter	15
+A5	M	summer	18
+A6	S	summer	18
+A7	ALL	winter	24
+A8	S	winter	27
+A9	S	summer	10
+A10	S	winter	21
+A11	XL	winter	31
+A12	S	summer	11
+A13	M	summer	27
+A14	XL	summer	13
+A15	M	summer	37
+A16	M	summer	27
+A17	M	summer	31
+A18	M	winter	29
+A19	XL	winter	31
+A20	XL	summer	17
+A21	ALL	winter	39
+A22	XL	summer	37
+A23	S	winter	37
+A24	M	summer	32
+A25	S	winter	37
+A26	S	winter	38
+A27	ALL	winter	32
+A28	M	winter	17
+A29	XL	winter	13
+A30	XL	winter	39
+A31	XL	winter	23
+A32	S	summer	21
+A33	M	summer	35
+A34	M	summer	35
+A35	S	summer	26
+A36	XL	winter	36
+A37	M	winter	13
+A38	XL	summer	33
+A39	M	summer	23
+A40	M	summer	35
+Children
+C1	XL	
+C2	M	
+C3	XL	
+C4	M	
+C5	XL	
+C6	S	
+C7	S	
+C8	M	
+C9	S	
+C10	M	
+C11	S	
+C12	M	
+C13	XL	
+C14	S	
+C15	M	

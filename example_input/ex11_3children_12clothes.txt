@@ -1,0 +1,17 @@
+Clothes
+A1	ALL	summer	14
+A2	L	winter	18
+A3	L	winter	20
+A4	S	summer	21
+A5	L	winter	21
+A6	ALL	summer	18
+A7	L	summer	10
+A8	L	winter	31
+A9	L	summer	25
+A10	L	winter	25
+A11	ALL	winter	31
+A12	ALL	summer	21
+Children
+C1	S	
+C2	L	
+C3	L	

@@ -1,0 +1,76 @@
+Each child should get atleast one summer and winter
+Each child should get atleast one item
+
+TODO:
+Break the loop before (Time optimzation) --- if condition fails
+change only dynamic columns
+Avoid copying the matrix path instead save space (Space Optimization)
+Change naming conventions
+Make all test cases work from linux nohup
+include summer winter check --- test case 1 fails
+draw flow diagram
+
+
+Literature Review:
+
+Start of Combinatorial algorithm
+
+
+Branch and Bound
+
+Objective function
+
+Candidate Solutions
+
+Data Structure - Solution Instance
+
+Pruning - track of global upper bound minimum
+
+What is the time complexity of branch and bound?
+
+
+The following is the skeleton of a generic branch and bound algorithm for minimizing an arbitrary objective function f.[3] To obtain an actual algorithm from this, one requires a bounding function bound, that computes lower bounds of f on nodes of the search tree, as well as a problem-specific branching rule. As such, the generic algorithm presented here is a higher-order function.
+
+Using a heuristic, find a solution xh to the optimization problem. Store its value, B = f(xh). (If no heuristic is available, set B to infinity.) B will denote the best solution found so far, and will be used as an upper bound on candidate solutions.
+Initialize a queue to hold a partial solution with none of the variables of the problem assigned.
+Loop until the queue is empty:
+Take a node N off the queue.
+If N represents a single candidate solution x and f(x) < B, then x is the best solution so far. Record it and set B ← f(x).
+Else, branch on N to produce new nodes Ni. For each of these:
+If bound(Ni) > B, do nothing; since the lower bound on this node is greater than the upper bound of the problem, it will never lead to the optimal solution, and can be discarded.
+Else, store Ni on the queue.
+Several different queue data structures can be used. This FIFO queue-based implementation yields a breadth-first search. A stack (LIFO queue) will yield a depth-first algorithm. A best-first branch and bound algorithm can be obtained by using a priority queue that sorts nodes on their lower bound.[3] Examples of best-first search algorithms with this premise are Dijkstra's algorithm and its descendant A* search. The depth-first variant is recommended when no good heuristic is available for producing an initial solution, because it quickly produces full solutions, and therefore upper bounds.[7]
+
+
+{\displaystyle x_{1}+x_{2}\leq 50}
+
+{\displaystyle 4x_{1}+7x_{2}\leq 280}{\displaystyle 4x_{1}+7x_{2}\leq 280}
+
+{\displaystyle x_{1}x_{2}\geq 0}{\displaystyle x_{1}x_{2}\geq 0}
+
+{\displaystyle x_{1}}x_{1} and {\displaystyle x_{2}}x_{2} are integers.
+
+f the best in subtree is worse than current best, we can simply ignore this node and its subtrees. So we compute bound (best solution) for every node and compare the bound with current best solution before exploring the node. Example bounds used in below diagram
+
+
+Branch and bound is very useful technique for searching a solution but in worst case, we need to fully calculate the entire tree. At best, we only need to fully calculate one path through the tree and prune the rest of it. 
+
+
+
+Ref:
+https://www.geeksforgeeks.org/0-1-knapsack-using-branch-and-bound/
+https://en.wikipedia.org/wiki/Combinatorial_optimization
+
+
+	A1	A2	A3	A4	A5	A6	A7	A8	A9	A10	
+C1	33	36	0	0	16	0	39	0	0	10	---> Ci
+C2	33	0	0	0	0	10	0	0	16	0	---> Ci
+C3	33	0	29	19	0	0	0	13	0	0   ---> Ci
+
+
+Additional test cases
+All edge cases
+explain - Why we need to explore all solutions
+
+
+
