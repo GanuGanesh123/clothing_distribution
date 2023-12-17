@@ -4,9 +4,9 @@
 //
 // Base file for input and output for clothing distribution problem.
 //
-// CS5130 Advanced Algorithms
+// 
 //
-// Reshma Priya Manne Muddu, Oct. 2022
+// Sai Sri Ganesh Putsala, Reshma Priya Manne Muddu, Oct. 2022
 //
 // ---------------------------------------------------------------------
 
